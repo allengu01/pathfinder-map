@@ -5,19 +5,20 @@
 body {
     margin: 0;
     font-size: 24px;
-    font-family: 'Dosis', sans-serif;
+    font-family: 'Nunito', sans-serif;
     color: #111d5e;
 }
 
 /** HEADER NAV BAR **/
 header {
     width: 100%;
+    font-family: 'Dosis', sans-serif;
     height: auto;
     position: relative;
     color: #111d5e;
     font-size: 24px;
     background: rgb(251,144,98);
-    background: linear-gradient(90deg, rgba(251,144,98,1) 0%, rgba(206,73,147,0.5648634453781513) 26%, rgba(106,13,131,0.335171568627451) 100%);
+    background: linear-gradient(90deg, rgba(251,144,98,1) 0%, rgba(206,73,147,0.5648634453781513) 40%, rgba(106,13,131,0.335171568627451) 100%);
     box-shadow: 2px 2px 8px #111d5e;
 }
 
@@ -75,6 +76,7 @@ header {
 header hr {
     margin-top: 0;
     border-bottom: 2px solid #111d5e;
+    margin-bottom: 8px;
 }
 .col-sm-3, .col-sm-6, .col-sm-9, .col-sm-12, .col-md-3, .col-md-6, .col-md-9, .col-md-12 {
     position: relative;
@@ -82,6 +84,31 @@ header hr {
     min-height: 1px;
     padding-left: 25px;
     padding-right: 25px;
+}
+
+/** UI **/
+.button-bar {
+    margin-top: 10px;
+}
+
+.button-container {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+}
+
+.button-container button {
+    font-family: 'Dosis', sans-serif;
+    font-size: 24px;
+    color: #111d5e;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    margin: 0 10px 0 10px;
 }
 
 /** GRID **/
@@ -99,7 +126,7 @@ header hr {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 10px;
     padding: 0 10px 0 10px;
     width: 100%;
     height: 500px;
@@ -125,11 +152,11 @@ header hr {
 }
 
 .unvisited.house-node, .unvisited.destination-node, .unvisited.road-node {
-    background-color: rgba(105, 13, 130, 0.45);
+    background-color: rgba(105, 13, 130, 0.5);
 }
 
 .visited.house-node, .visited.destination-node, .visited.road-node {
-    background-color: rgba(238, 93, 108, 0.69);
+    background-color: rgba(238, 93, 108, 0.8);
 }
 
 .house-node {
@@ -144,6 +171,57 @@ header hr {
     background-repeat: no-repeat;
     background-size: 25px 25px;
     background-position: center;
+}
+
+/** NOTIFICATIONS **/
+.notification-container {
+    position: fixed;
+    top: 75%;
+    right: 50%;
+    width: 500px;
+    max-width: calc(100% - 30px);
+    margin-right: -250px;
+}
+
+.notification-templates {
+    display: none;
+}
+
+.notification {
+    background-color: rgba(251,144,98,0.97);
+    box-shadow: 0 3px 6px rgba(17, 29, 95, 0.4);
+    border: 2px solid #111d5e;
+    color: #111d5e;
+    font-size: 32px;
+    line-height: 36px;
+    text-align: center;
+    padding: 20px 20px 20px 20px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    animation-duration: 0.5s;
+    animation-name: notificationShow;
+}
+
+@keyframes notificationShow {
+    from {
+        transform: scale(0.7);
+        opacity: 0.9;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.notification button {
+    font-family: 'Nunito', sans-serif;
+    font-size: 24px;
+    color: #111d5e;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    margin: 10px 10px 0 10px;
 }
 
 /** MEDIA QUERIES **/
@@ -183,7 +261,7 @@ header hr {
 }
 @media (min-width: 992px) {
     .nav-brand {
-        width: 400px !important;
+        width: 350px !important;
     }
     .nav-bar {
         flex-direction: row;
@@ -205,7 +283,7 @@ header hr {
     }
 }
 
-/** ANIMATIONS **/
+/** TRANSITIONS **/
 .to-road {
     animation-duration: 0.5s;
     animation-name: toRoad;
@@ -216,7 +294,7 @@ header hr {
         background-color: white;
     }
     to {
-        background-color: rgba(105, 13, 130, 0.45);
+        background-color: rgba(105, 13, 130, 0.5);
     }
 }
 
@@ -227,7 +305,7 @@ header hr {
 
 @keyframes visitedToStandard {
     from {
-        background-color: rgba(238, 93, 108, 0.69);
+        background-color: rgba(238, 93, 108, 0.8);
     }
     to {
         background-color: white;
@@ -241,7 +319,7 @@ header hr {
 
 @keyframes unvisitedToStandard {
     from {
-        background-color: rgba(105, 13, 130, 0.45);
+        background-color: rgba(105, 13, 130, 0.5);
     }
     to {
         background-color: white;
@@ -255,10 +333,10 @@ header hr {
 
 @keyframes toVisited {
     from {
-        background-color: rgba(105, 13, 130, 0.45);
+        background-color: rgba(105, 13, 130, 0.5);
     }
     to {
-        background-color: rgba(238, 93, 108, 0.69);
+        background-color: rgba(238, 93, 108, 0.8);
     }
 }
 
@@ -269,9 +347,9 @@ header hr {
 
 @keyframes toUnvisited {
     from {
-        background-color: rgba(238, 93, 108, 0.69);
+        background-color: rgba(238, 93, 108, 0.8);
     }
     to {
-        background-color: rgba(105, 13, 130, 0.45);
+        background-color: rgba(105, 13, 130, 0.5);
     }
 }

@@ -98,8 +98,8 @@ class Grid {
         for (let r = 0; r < this.rows; r++) {
             for (let c = 0; c < this.cols; c++) {
                 let node = this.list_of_nodes[r][c];
+                node.setUnvisited();
                 if (node.getType() == "road") {
-                    node.setUnvisited();
                     node.changeType("standard");
                 }
             }

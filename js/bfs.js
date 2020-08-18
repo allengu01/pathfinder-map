@@ -22,68 +22,67 @@ class Queue {
         return this.vals;
     }
 }
-
 fps = 30;
-
-function runBFS(grid, start_node) {
+function bfs(nodes, grid) {
+    var grid_nodes = grid.getNodes();
     var [rows, cols] = grid.getDimensions();
-    var list_of_nodes = grid.getNodes();
-    var current_nodes = new Queue();
-    current_nodes.enqueue(start_node);
-    var next_nodes;
-    var bfs_animation;
+    var next_nodes = new Queue();
+    var found = false;
 
-    function bfs() {
-        //console.log(current_nodes);
-        next_nodes = new Queue();
-        var found = false;
-        while (!current_nodes.isEmpty()) {
-            let cur = current_nodes.dequeue();
+    setTimeout(function() {
+        for (let node of nodes.show()) {
+            node.setVisited();
+        }
+        while (!nodes.isEmpty()) {
+            let cur = nodes.dequeue();
             if (cur.getType() == "destination") {
                 found = true;
-                break;
             }
             let r = cur.getRow();
             let c = cur.getCol();
             if (r > 0) {
-                next = list_of_nodes[r-1][c];
+                next = grid_nodes[r-1][c];
                 if (!next.isVisited() && next.getType() !== "standard") {
-                    next.setVisited();
                     next_nodes.enqueue(next);
                 }
             }
             if (r < rows-1) {
-                next = list_of_nodes[r+1][c];
+                next = grid_nodes[r+1][c];
                 if (!next.isVisited() && next.getType() !== "standard") {
-                    next.setVisited();
                     next_nodes.enqueue(next);
                 }
             }
             if (c > 0) {
-                next = list_of_nodes[r][c-1];
+                next = grid_nodes[r][c-1];
                 if (!next.isVisited() && next.getType() !== "standard") {
-                    next.setVisited();
                     next_nodes.enqueue(next);
                 }        
             }
             if (c < cols-1) {
-                next = list_of_nodes[r][c+1];
+                next = grid_nodes[r][c+1];
                 if (!next.isVisited() && next.getType() !== "standard") {
-                    next.setVisited();
                     next_nodes.enqueue(next);
                 }       
              }
         }
-        if (!found) {
-            setTimeout(function() {
-                current_nodes = next_nodes;
-                bfs_animation = requestAnimationFrame(bfs);
-            }, 1000/fps);
+        if (!found && !next_nodes.isEmpty()) {
+            return bfs(next_nodes, grid);
         }
-        else cancelAnimationFrame(bfs_animation);
-    }
+        else if (!found && next_nodes.isEmpty()) {
+            addNotification("no-path", "No Path Found");
+            return -1
+        }
+        else {
+            return 1;
+        }
+    }, 1000/fps);
+}
 
-    bfs_animation = requestAnimationFrame(bfs);
 
+function runBFS(grid, start_node) {
+    var current_nodes = new Queue();
+    current_nodes.enqueue(start_node);
+
+    return bfs(current_nodes, grid);
 }
 

@@ -8,6 +8,7 @@
 
     <title>Pathfinding Algorithm Mapper</title>
     <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@400;700&family=Lato&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -17,7 +18,7 @@
                 <a class="nav-logo">
                     <img src="images/map-logo.svg" height="50px" width="50px"/>
                 </a>
-                <a class="nav-name">Map Pathfinder</a>
+                <a class="nav-name">Pathfinder</a>
             </div>
             <ul class="nav-categories">
                 <li class="nav-item visible-md">
@@ -35,9 +36,19 @@
     </header>
     <div class="row">
         <div class="col-sm-12 col-md-12">
-            <button id="start">Start</button>
-            <button id="reset">Reset</button>
-            <button id="clear">Clear</button> 
+            <div class="button-bar">
+                <ul class="button-container">
+                    <li>
+                        <button id="start">Start</button>
+                    </li>
+                    <li>
+                        <button id="reset">Reset</button>
+                    </li>
+                    <li>
+                        <button id="clear">Clear</button> 
+                    </li>
+                </div>
+            </div>
         </div>
         <div class="col-sm-12 col-md-12">
             <div id="grid-templates">
@@ -51,10 +62,17 @@
             <div id="main-grid"></div>
         </div>
     </div>
+    <div class="notification-container">
+        <div class="notification-templates">
+            <div class="notification notification-no-path">
+                No Path Found
+                <button>OK</button> 
+            </div>
+        </div>
+    </div>
     <div>
         <ul>
             To Do List:
-            <li>Style Buttons</li>
             <li>Code Backtracking</li>
             <li>DFS</li>
             <li>Add Tutorial and About pages</li>
