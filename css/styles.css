@@ -13,10 +13,11 @@ header {
     width: 100%;
     height: auto;
     position: relative;
-    color: navy;
+    color: #111d5e;
     font-size: 24px;
-    background-image: linear-gradient(90deg, rgba(0,255,199,0.5797093837535014) 0%, rgba(0,255,199,0.34077380952380953) 45%, rgba(0,255,199,0.21192226890756305) 100%);
-    box-shadow: 2px 2px 8px navy;
+    background: rgb(251,144,98);
+    background: linear-gradient(90deg, rgba(251,144,98,1) 0%, rgba(206,73,147,0.5648634453781513) 26%, rgba(106,13,131,0.335171568627451) 100%);
+    box-shadow: 2px 2px 8px #111d5e;
 }
 
 .nav-bar {
@@ -61,13 +62,14 @@ header {
     height: 100%;
 }
 
-.nav-item:active, .nav-item:hover {
-    color: lime;
+.nav-item a.active, .nav-item a:hover {
+    text-decoration: none;
+    color: #6a0d83 !important;
     cursor: pointer;
 }
 header hr {
     margin-top: 0;
-    border-bottom: 2px solid navy;
+    border-bottom: 2px solid #111d5e;
 }
 .col-sm-3, .col-sm-6, .col-sm-9, .col-sm-12, .col-md-3, .col-md-6, .col-md-9, .col-md-12 {
     position: relative;
@@ -109,15 +111,41 @@ header hr {
 .standard-node, .house-node, .destination-node, .road-node {
     height: 31px;
     width: 31px;
-    border: 1px solid limegreen;
+    border: 1px solid black;
     margin-left: -1px;
+}
+
+.standard-node {
+    background-color: white;
+}
+
+.unvisited.house-node, .unvisited.destination-node, .unvisited.road-node {
+    background-color: rgba(105, 13, 130, 0.45);
+}
+
+.visited.house-node, .visited.destination-node, .visited.road-node {
+    background-color: rgba(238, 93, 108, 0.69);
+}
+
+.house-node {
+    background-image: url(../images/house.svg);
+    background-repeat: no-repeat;
+    background-size: 25px 25px;
+    background-position: center;
+}
+
+.destination-node {
+    background-image: url(../images/destination.svg);
+    background-repeat: no-repeat;
+    background-size: 25px 25px;
+    background-position: center;
 }
 
 /** MEDIA QUERIES **/
 @media (max-width: 991px) {
     .nav-brand {
         padding-bottom: 15px;
-        border-bottom: 1px dotted navy;
+        border-bottom: 1px dotted #111d5e;
         text-align: center;
     }
     .nav-logo {
@@ -156,7 +184,7 @@ header hr {
         flex-direction: row;
     }
     .nav-item:nth-child(1) {
-        border-left: 1px solid navy;
+        border-left: 1px solid #111d5e;
     }
     .col-md-3 {
         width: 25%;

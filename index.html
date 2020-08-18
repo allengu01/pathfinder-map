@@ -21,13 +21,13 @@
             </div>
             <ul class="nav-categories">
                 <li class="nav-item visible-md">
-                    <a class="nav-link">Link</a>
+                    <a class="nav-link active" href="#">Home</a>
                 </li>
                 <li class="nav-item visible-md">
-                    <a class="nav-link">Link</a>
+                    <a class="nav-link">Tutorial</a>
                 </li>
                 <li class="nav-item visible-md">
-                    <a class="nav-link">Link</a>
+                    <a class="nav-link">About</a>
                 </li>
             </ul>
         </nav>
@@ -35,12 +35,14 @@
     </header>
     <div class="row">
         <div class="col-sm-12 col-md-12">
-            UI here
+            <button id="start">Start</button>
+            <button id="reset">Reset</button>
+            <button id="clear">Clear</button> 
         </div>
         <div class="col-sm-12 col-md-12">
             <div id="grid-templates">
                 <div class="grid-row">
-                    <div class="standard-node" id="template-standard-node"></div>
+                    <div class="standard-node"></div>
                     <div class="house-node"></div>
                     <div class="destination-node"></div>
                     <div class="road-node"></div>
@@ -48,12 +50,22 @@
             </div>
             <div id="main-grid"></div>
         </div>
-
+    </div>
+    <div>
+        <ul>
+            To Do List:
+            <li>Style Buttons</li>
+            <li>Code Backtracking</li>
+            <li>DFS</li>
+            <li>Add Tutorial and About pages</li>
+        </ul>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="js/node.js"></script>
     <script src="js/grid.js"></script>
+    <script src="js/bfs.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
