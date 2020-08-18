@@ -6,6 +6,7 @@ body {
     margin: 0;
     font-size: 24px;
     font-family: 'Dosis', sans-serif;
+    color: #111d5e;
 }
 
 /** HEADER NAV BAR **/
@@ -62,8 +63,12 @@ header {
     height: 100%;
 }
 
+.nav-item a {
+    text-decoration: none !important;
+    color: #111d5e;
+}
+
 .nav-item a.active, .nav-item a:hover {
-    text-decoration: none;
     color: #6a0d83 !important;
     cursor: pointer;
 }
@@ -200,3 +205,73 @@ header hr {
     }
 }
 
+/** ANIMATIONS **/
+.to-road {
+    animation-duration: 0.5s;
+    animation-name: toRoad;
+}
+
+@keyframes toRoad {
+    from {
+        background-color: white;
+    }
+    to {
+        background-color: rgba(105, 13, 130, 0.45);
+    }
+}
+
+.visited-to-standard {
+    animation-duration: 0.5s;
+    animation-name: visitedToStandard;
+}
+
+@keyframes visitedToStandard {
+    from {
+        background-color: rgba(238, 93, 108, 0.69);
+    }
+    to {
+        background-color: white;
+    }
+}
+
+.unvisited-to-standard {
+    animation-duration: 0.5s;
+    animation-name: unvisitedToStandard;
+}
+
+@keyframes unvisitedToStandard {
+    from {
+        background-color: rgba(105, 13, 130, 0.45);
+    }
+    to {
+        background-color: white;
+    }
+}
+
+.to-visited {
+    animation-duration: 0.5s;
+    animation-name: toVisited;
+}
+
+@keyframes toVisited {
+    from {
+        background-color: rgba(105, 13, 130, 0.45);
+    }
+    to {
+        background-color: rgba(238, 93, 108, 0.69);
+    }
+}
+
+.to-unvisited {
+    animation-duration: 0.5s;
+    animation-name: toUnvisited;
+}
+
+@keyframes toUnvisited {
+    from {
+        background-color: rgba(238, 93, 108, 0.69);
+    }
+    to {
+        background-color: rgba(105, 13, 130, 0.45);
+    }
+}
