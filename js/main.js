@@ -8,6 +8,7 @@ $(grid_templates).hide();
 
 var map_grid, grid_height, grid_width;
 var notification_number = 0, notification_ids = [];
+var algorithm_state = 0;
 
 function startup() {
     var grid_div = document.querySelector("#main-grid");
@@ -53,16 +54,19 @@ window.addEventListener('resize', (event) => {
 });
 
 document.getElementById("start").addEventListener("click", (event) => {
-    runBFS(map_grid, map_grid.getStartNode());
+    if (algorithm_state == 0) runBFS(map_grid, map_grid.getStartNode());
+    algorithm_state = 1;
 });
 
 document.getElementById("reset").addEventListener("click", (event) => {
     map_grid.resetVisited();
     clearNotifications();
+    algorithm_state = 0;
 });
 
 document.getElementById("clear").addEventListener("click", (event) => {
     map_grid.clear();
     clearNotifications();
+    algorithm_state = 0;
 });
 
