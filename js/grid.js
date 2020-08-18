@@ -58,20 +58,24 @@ class Grid {
                 let current_node = this.list_of_nodes[r][c];
                 let current_element = document.getElementById(`${r}-${c}`);
                 current_element.addEventListener("mousedown", (event) => {
-                    this.mouse_state++;
-                    if (current_node.getType() === "standard") this.fill_state = 1;
-                    else if (current_node.getType() === "road") this.fill_state = 0;
-                    event.preventDefault();
-                    grid.setRoads(current_node);
+                    if (event.button == 0) {
+                        this.mouse_state++;
+                        if (current_node.getType() === "standard") this.fill_state = 1;
+                        else if (current_node.getType() === "road") this.fill_state = 0;
+                        event.preventDefault();
+                        grid.setRoads(current_node);
+                    }
                 });
 
                 current_element.addEventListener("mouseover", (event) => {
-                    event.preventDefault();
-                    if (this.mouse_state == 1) grid.setRoads(current_node);
+                    if (event.button == 0) {
+                        event.preventDefault();
+                        if (this.mouse_state == 1) grid.setRoads(current_node);
+                    }
                 });
 
                 current_element.addEventListener("mouseup", (event) => {
-                    this.mouse_state--;
+                    if (event.button == 0) this.mouse_state--;
                 })
             }
         }
