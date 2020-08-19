@@ -49,12 +49,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
     startup();
 });
 
+/** 
 window.addEventListener('resize', (event) => {
     startup();
 });
+**/
 
 document.getElementById("start").addEventListener("click", (event) => {
-    if (algorithm_state == 0) runBFS(map_grid, map_grid.getStartNode());
+    if (algorithm_state == 0) bfs(map_grid, map_grid, function() {
+        addNotification("no-path", "No Path Found");
+    });
     algorithm_state = 1;
 });
 

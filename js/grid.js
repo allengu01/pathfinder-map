@@ -45,10 +45,16 @@ class Grid {
         //console.log(gridHTML);
         document.querySelector("#main-grid").innerHTML = gridHTML;
 
+        for (let r = 0; r < this.rows; r++) {
+            for (let c = 0; c < this.cols; c++) {
+                this.list_of_nodes[r][c].setElement();
+            }
+        }     
+
         this.start_coord = [Math.floor((this.rows-1)/2), Math.floor(this.cols/6)];
         this.start_node = this.list_of_nodes[this.start_coord[0]][this.start_coord[1]];
         this.start_node.changeType("house");
-        this.list_of_nodes[Math.floor((this.rows-1)/2)][Math.floor(this.cols*5/6)].changeType("destination");
+        this.list_of_nodes[Math.floor((this.rows-1)/2)][Math.floor(this.cols*5/6)].changeType("destination");   
     }
 
     addEventListeners() {
