@@ -25,13 +25,49 @@ class Queue {
 fps = 20;
 var bfs_animation;
 
-function bfs(current_nodes, grid, callback) {
+function getPath(node, parent) {
+    parent_node = parent[node.getRow()][node.getCol()];
+    
+    if (parent_node.getType() == "house") return new Array(parent_node, node);
+    var new_path = getPath(parent_node, parent);
+    new_path.push(node);
+
+    return new_path;
+}
+
+function showPath(path) {
+    let i = 0;
+    console.log(path);
+    function step() {
+        path[i].setPath();
+        if (i < path.length - 1) {
+            i++;
+            setTimeout(function() {
+                bfs_animation = requestAnimationFrame(step);
+            }, 1000/fps);
+        }
+        else {
+            cancelAnimationFrame(bfs_animation);
+        }
+    }
+    bfs_animation = requestAnimationFrame(step);
+}
+
+function bfs(current_nodes, grid, no_path) {
     var bfsStart = window.performance.now();
     var grid_nodes = grid.getNodes();
     var[rows, cols] = grid.getDimensions();
     var current_nodes = new Queue();
     
-    current_nodes.enqueue(grid.getStartNode());
+    var parent = new Array(rows).fill().map(x => new Array(cols).fill());
+    var start_node = grid.getStartNode();
+    start_node.setVisited();
+    parent[start_node.getRow()][start_node.getCol()] = start_node;
+    current_nodes.enqueue(start_node);
+
+    var end_node;
+
+    
 
     function step() {
         //var stepStart = window.performance.now();
@@ -45,35 +81,63 @@ function bfs(current_nodes, grid, callback) {
             let c = cur.getCol();
             if (r > 0) {
                 next = grid_nodes[r-1][c];
-                if (next.getType() === "destination") found = true;
-                if (!next.isVisited() && next.getType() !== "standard") {
-                    next_nodes.enqueue(next);
-                    next.setVisited();
+                if (!next.isVisited()) {
+                    if (next.getType() === "destination") {
+                        parent[r-1][c] = cur;
+                        found = true;
+                        end_node = next;
+                    }                    
+                    if (next.getType() !== "standard") {
+                        parent[r-1][c] = cur;
+                        next_nodes.enqueue(next);
+                        next.setVisited();
+                    }
                 }
             }
             if (r < rows-1) {
                 next = grid_nodes[r+1][c];
-                if (next.getType() === "destination") found = true;
-                if (!next.isVisited() && next.getType() !== "standard") {
-                    next_nodes.enqueue(next);
-                    next.setVisited();
+                if (!next.isVisited()) {
+                    if (next.getType() === "destination") {
+                        parent[r+1][c] = cur;
+                        found = true;
+                        end_node = next;
+                    }
+                    if (next.getType() !== "standard") {
+                        parent[r+1][c] = cur;
+                        next_nodes.enqueue(next);
+                        next.setVisited();
+                    }
                 }
             }
             if (c > 0) {
                 next = grid_nodes[r][c-1];
-                if (next.getType() === "destination") found = true;
-                if (!next.isVisited() && next.getType() !== "standard") {
-                    next_nodes.enqueue(next);
-                    next.setVisited();
-                }        
+                if (!next.isVisited()) {
+                    if (next.getType() === "destination") {
+                        parent[r][c-1] = cur;
+                        found = true;
+                        end_node = next;
+                    }
+                    if (next.getType() !== "standard") {
+                        parent[r][c-1] = cur;
+                        next_nodes.enqueue(next);
+                        next.setVisited();
+                    }
+                }       
             }
             if (c < cols-1) {
                 next = grid_nodes[r][c+1];
-                if (next.getType() === "destination") found = true;
-                if (!next.isVisited() && next.getType() !== "standard") {
-                    next_nodes.enqueue(next);
-                    next.setVisited();
-                }       
+                if (!next.isVisited()) {
+                    if (next.getType() === "destination") {
+                        parent[r][c+1] = cur;
+                        found = true;
+                        end_node = next;
+                    }                    
+                    if (next.getType() !== "standard") {
+                        parent[r][c+1] = cur;
+                        next_nodes.enqueue(next);
+                        next.setVisited();
+                    }
+                }     
             }
         }
 
@@ -87,17 +151,16 @@ function bfs(current_nodes, grid, callback) {
         }
         else if (!found && next_nodes.isEmpty()) {
             cancelAnimationFrame(bfs_animation);
-            callback();
+            no_path();
         }
         else {
             cancelAnimationFrame(bfs_animation);
+            path = getPath(end_node, parent);
+            showPath(path);
         }
     }
 
     bfs_animation = requestAnimationFrame(step);
-    var bfsEnd = window.performance.now();
-    console.log("bfs time: " + `${bfsEnd-bfsStart}`);
-
 }
 
 /**

@@ -10,6 +10,7 @@ var map_grid, grid_height, grid_width;
 var notification_number = 0, notification_ids = [];
 var algorithm_state = 0;
 
+
 function startup() {
     var grid_div = document.querySelector("#main-grid");
     var grid_rect = grid_div.getBoundingClientRect();
@@ -46,7 +47,7 @@ function clearNotifications() {
 }
 
 window.addEventListener('DOMContentLoaded', (event) => {
-    startup();
+    startup(); 
 });
 
 /** 

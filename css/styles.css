@@ -140,7 +140,7 @@ header hr {
     margin-top: -1px;
 }
 
-.standard-node, .house-node, .destination-node, .road-node {
+.standard-node, .house-node, .destination-node, .road-node, .path-node {
     height: 31px;
     width: 31px;
     border: 1px solid black;
@@ -149,14 +149,17 @@ header hr {
 
 .standard-node {
     background-color: white;
+    transition: background-color 0.5s ease;
 }
 
 .unvisited.house-node, .unvisited.destination-node, .unvisited.road-node {
     background-color: rgba(105, 13, 130, 0.5);
+    transition: background-color 0.5s ease;
 }
 
 .visited.house-node, .visited.destination-node, .visited.road-node {
     background-color: rgba(238, 93, 108, 0.8);
+    transition: background-color 0.5s ease;
 }
 
 .house-node {
@@ -171,6 +174,11 @@ header hr {
     background-repeat: no-repeat;
     background-size: 25px 25px;
     background-position: center;
+}
+
+.path {
+    background-color: rgba(238, 175, 97, 0.8);
+    transition: background-color 0.5s ease;
 }
 
 /** NOTIFICATIONS **/
@@ -282,75 +290,3 @@ header hr {
         width: 100%;
     }
 }
-
-/** TRANSITIONS **/
-.to-road {
-    animation-duration: 0.5s;
-    animation-name: toRoad;
-}
-
-@keyframes toRoad {
-    from {
-        background-color: rgba(105, 13, 130, 0.2);
-    }
-    to {
-        background-color: rgba(105, 13, 130, 0.5);
-    }
-}
-
-.visited-to-standard {
-    animation-duration: 0.5s;
-    animation-name: visitedToStandard;
-}
-
-@keyframes visitedToStandard {
-    from {
-        background-color: rgba(238, 93, 108, 0.8);
-    }
-    to {
-        background-color: white;
-    }
-}
-
-.unvisited-to-standard {
-    animation-duration: 0.5s;
-    animation-name: unvisitedToStandard;
-}
-
-@keyframes unvisitedToStandard {
-    from {
-        background-color: rgba(105, 13, 130, 0.5);
-    }
-    to {
-        background-color: white;
-    }
-}
-
-.to-visited {
-    animation-duration: 0.5s;
-    animation-name: toVisited;
-}
-
-@keyframes toVisited {
-    from {
-        background-color: rgba(105, 13, 130, 0.5);
-    }
-    to {
-        background-color: rgba(238, 93, 108, 0.8);
-    }
-}
-
-.to-unvisited {
-    animation-duration: 0.5s;
-    animation-name: toUnvisited;
-}
-
-@keyframes toUnvisited {
-    from {
-        background-color: rgba(238, 93, 108, 0.8);
-    }
-    to {
-        background-color: rgba(105, 13, 130, 0.5);
-    }
-}
-

@@ -14,7 +14,7 @@ class Node {
             this.visited = 0;
         }
         else if (new_type === "standard" && this.visited == 0) {
-            this.element.className = "unvisited-to-standard " + new_type + "-node";
+            this.element.className = new_type + "-node";
             this.visited = 0;
         }
         else if (new_type === "road") {
@@ -51,12 +51,19 @@ class Node {
 
     setVisited() {
         this.visited = 1;
-        this.element.className = "to-visited visited " + this.type+"-node";
+        this.element.className = "to-visited visited " + this.type + "-node";
     }
 
     setUnvisited() {
-        if (this.visited == 1) this.element.className = "to-unvisited unvisited " + this.type+"-node";
-        this.visited = 0;
+        
+        if (this.visited == 1) {
+            this.element.className = "unvisited " + this.type + "-node";
+            this.visited = 0;
+        }
+    }
+
+    setPath() {
+        this.element.className = "to-path path " + this.type + "-node";
     }
 
     isVisited() {
