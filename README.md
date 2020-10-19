@@ -3,4 +3,4 @@ This website is a visualization tool for pathfinding and searching algorithms. V
 
 Currently, I've implemented a breadth-first search algorithm to find the shortest path, and plan on adding more in the near future.
 
-The project was inspired by [Clement Mihailescu](https://github.com/clementmihailescu/Pathfinding-Visualizer), but coded from scratch with HTML, CSS, and Javascript.
+The animations and breadth first search algorithm were coded from scratch. The project was inspired by [Clement Mihailescu](https://github.com/clementmihailescu/Pathfinding-Visualizer) and I used his implementation of the grid as a guideline.
